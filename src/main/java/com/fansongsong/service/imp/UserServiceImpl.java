@@ -11,8 +11,9 @@ import com.fansongsong.mapper.UserMapper;
 import com.fansongsong.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-@Service
+
 //@Component
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired

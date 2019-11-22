@@ -7,9 +7,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <!-- 别名配置 -->
  <typeAliases>
     <!-- todo -->
-   <package name="com.wanglei.entity"/>
+   <package name="com.fansongsong.entity"/>
    <!-- todo -->
-   <package name="com.wanglei.vo"/>
+   <package name="com.fansongsong.vo"/>
  </typeAliases>
  
  

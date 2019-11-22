@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wanglei.mapper.ChannelMapper">
+<mapper namespace="com.fansongsong.mapper.ChannelMapper">
 	<select id="findById" resultType="channel">
 		SELECT * FROM cms_channel WHERE id=${value}
 	</select>

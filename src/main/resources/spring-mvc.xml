@@ -11,9 +11,9 @@
 	<context:property-placeholder
 		location="classpath:cms.properties" />
 		
-	<!--  todo --> 
+	<!--  todo -->
 	<context:component-scan
-		base-package=" com.wanglei.controller"></context:component-scan>
+		base-package=" com.fansongsong.controller"></context:component-scan>
 	<!-- 视图解析图 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,19 +24,27 @@
 	</bean>
 	
 	<!-- 配置权限的拦截器 -->
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
+			配置拦截的资源
 			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/user/login"/>
-			<mvc:exclude-mapping path="/user/register"/>
+			配置排除的拦截资源
+			<mvc:exclude-mapping path="/html/**"/>
+			<mvc:exclude-mapping path="/resource/**"/>
+			<mvc:exclude-mapping path="/article/show"/>
+			<mvc:exclude-mapping path="/article/comment"/>
+			<mvc:exclude-mapping path="/article/getclist"/>
+			<mvc:exclude-mapping path="/article/addHits"/>
+			<mvc:exclude-mapping path="/pic/**"/>
 			<mvc:exclude-mapping path="/"/>
 			<mvc:exclude-mapping path="/index"/>
-			<mvc:exclude-mapping path="/pic/**"/>
-			<mvc:exclude-mapping path="/resource/**"/>
-			<mvc:exclude-mapping path="/article/showdetail"/>
-			<bean class="com.fansongsong.web.UserInterceptor"></bean>
+			<mvc:exclude-mapping path="/user/login"/>
+			<mvc:exclude-mapping path="/user/register"/>
+			<mvc:exclude-mapping path="/user/checkExist"/>
+			拦截器的实现类
+			<bean class="com.mmcro.cms.web.AuthIntercepter"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 	
 	<!-- 上传下载配置 -->	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -49,4 +57,6 @@
 	<mvc:default-servlet-handler />
 	<!-- mvc注解驱动 -->
 	<mvc:annotation-driven/>
+	
+
 </beans>

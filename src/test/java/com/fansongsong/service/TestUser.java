@@ -1,4 +1,4 @@
-package com.wanglei.service;
+package com.fansongsong.service;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

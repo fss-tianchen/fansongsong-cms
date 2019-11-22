@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wanglei.mapper.CategoryMapper">
+<mapper namespace="com.fansongsong.mapper.CategoryMapper">
 	<select id="findById" resultType="category">
 		SELECT * FROM cms_category WHERE id=${value}
 	</select>
