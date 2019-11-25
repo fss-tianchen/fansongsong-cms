@@ -3,6 +3,7 @@ package com.fansongsong.service;
 import java.util.List;
 
 import com.fansongsong.entity.Article;
+import com.fansongsong.entity.Comment;
 import com.github.pagehelper.PageInfo;
 
 public interface ArticleService {
@@ -153,4 +154,27 @@ public interface ArticleService {
 	 * @return: Integer
 	 */
 	Integer favarite(Integer id, Integer id2);
+
+	/**
+	 * 
+	 * @Title: commentlist 
+	 * @Description: 获取评论
+	 * @param id
+	 * @param page
+	 * @return
+	 * @return: PageInfo<Comment>
+	 */
+	PageInfo<Comment> commentlist(Integer id, Integer page);
+
+	/**
+	 * 
+	 * @Title: getImgArticles 
+	 * @Description: 获取最新的10篇图片文章
+	 * @param i
+	 * @return
+	 * @return: List<Article>
+	 */
+	List<Article> getImgArticles(Integer i);
+	
+	Integer comment(Integer userId, Integer articleId, String content);
 }

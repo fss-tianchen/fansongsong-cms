@@ -9,6 +9,13 @@ import com.fansongsong.entity.Channel;
 import com.fansongsong.mapper.ChannelMapper;
 import com.fansongsong.service.ChannelService;
 
+/**
+ * 
+ * @ClassName: ChannelServiceImpl 
+ * @Description: TODO
+ * @author: Creazy丿绝情
+ * @date: 2019年11月25日 下午2:16:15
+ */
 @Service
 public class ChannelServiceImpl  implements ChannelService{
 	

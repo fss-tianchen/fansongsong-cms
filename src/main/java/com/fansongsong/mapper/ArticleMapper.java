@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.fansongsong.entity.Article;
+import com.fansongsong.entity.Comment;
 
 public interface ArticleMapper {
 
@@ -137,7 +138,9 @@ public interface ArticleMapper {
 			+ " values("
 			+ " #{title},#{content},#{picture},#{channelId},#{categoryId},"
 			+ "#{userId},#{hits},#{hot},#{status},#{deleted},"
-			+ "now(),now(),#{commentCnt},#{articleType})")
+			+ "now(),now(),#{commentCnt},"
+			+ "#{articleType,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler,"
+			+ "jdbcType=INTEGER,javaType=com.fansongsong.entity.TypeEnum})")
 	Integer add(Article article);
 
 	/**
@@ -162,8 +165,53 @@ public interface ArticleMapper {
 	 * @return
 	 * @return: Integer
 	 */
-	@Insert(" REPLACE cms_collection(userId,artId,created) "
-			+ "VALUES(#{userId},#{artId},now())")
-	Integer favorite(@Param("userId")Integer userId, @Param("artId")Integer artId);
+	@Insert(" REPLACE cms_favorite(user_id,article_id,created) "
+			+ "VALUES(#{userId},#{articleId},now())")
+	Integer favorite(@Param("userId")Integer userId, @Param("articleId")Integer artId);
+
+	/**
+	 * 
+	 * @Title: getImgArticles 
+	 * @Description: 获取10篇图片文章
+	 * @param num
+	 * @return
+	 * @return: List<Article>
+	 */
+	List<Article> getImgArticles(Integer num);
+
+	/**
+	 * 
+	 * @Title: commentlist 
+	 * @Description: TODO
+	 * @param articleId
+	 * @return
+	 * @return: List<Comment>
+	 */
+	@Select("SELECT * FROM cms_comment WHERE articleId=#{value}")
+	List<Comment> commentlist(Integer articleId);
+
+	/**
+	 * 
+	 * @Title: addComment 
+	 * @Description: 添加评论
+	 * @param userId
+	 * @param articleId
+	 * @param content
+	 * @return
+	 * @return: Integer
+	 */
+	@Insert("INSERT INTO cms_comment (articleId,userId,content,created)"
+			+ " VALUES(#{articleId},#{userId},#{content},now())")
+	Integer addComment(Integer userId, Integer articleId, String content);
+
+	/**
+	 * 
+	 * @Title: increaseCommentCnt 
+	 * @Description: 评论数目自增一
+	 * @param articleId
+	 * @return: void
+	 */
+	@Update("UPDATE cms_article set commentCnt=commentCnt+1 WHERE id=#{value} ")
+	void increaseCommentCnt(Integer articleId);
 
 }

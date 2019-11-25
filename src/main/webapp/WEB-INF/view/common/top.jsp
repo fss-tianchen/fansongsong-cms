@@ -47,7 +47,7 @@
 		          	${sessionScope.SESSION_USER_KEY.username}
 		           <span class="caret"></span></a>
 		         <ul class="dropdown-menu ">
-		            <li><a href="#">个人中心</a></li>
+		            <li><a href="/user/home">个人中心</a></li>
 		            <li><a href="#">个人设置</a></li>
 		            <li><a href="#">修改头像</a></li>
 		            <li role="separator" class="divider"></li>

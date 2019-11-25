@@ -12,8 +12,8 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 1723982065292768684L;
 	private Integer id;
 	private String name;
-	private int channelId;
-	private Channel channel;
+	private int channelId;//频道id
+	private Channel channel;//频道
 	
 	public Integer getId() {
 		return id;

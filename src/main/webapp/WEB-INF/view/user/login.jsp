@@ -70,7 +70,7 @@
 				<div class="passport_r">
 					<h3>最新加入的用户：</h3>
 					<p align="center">
-						<img src="resource/images/balabala.jpg" alt="..."
+						<img src="/resource/images/guest.jpg" alt="..."
 							class="rounded-circle img-thumbnail" /> &nbsp;&nbsp;&nbsp;&nbsp;
 						<img src="/resource/images/guest1.jpg" alt="..."
 							class="rounded-circle img-thumbnail" />

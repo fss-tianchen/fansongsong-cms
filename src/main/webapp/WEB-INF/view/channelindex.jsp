@@ -70,22 +70,24 @@
 					<!-- 放文章的列表 -->
 					<div >
 						<c:forEach items="${articles.list}" var="article" >
-						<div class=row>
-							<hr>
-							<div class="col-md-2"><img height="80px" width="80px" src="/pic/${article.picture}"></div>
-							<div class="col-md-10">
-								<a href="javascript:showArticle(${article.id})">${article.title}</a>
-								<br>
-								 频道：<a>${article.channel.name}</a> &nbsp;&nbsp;
-								 分类：<a>${article.category.name}</a>
-								<br>
-								<br>
-								${article.user.username} 发布于  <fmt:formatDate value="${article.created}" pattern="yyyy-MM-dd"/> 
+							<div class=row style="padding-bottom:1px">
+								<hr width="88%" style="padding-bottom:1px;background-color:#D2691E;border:none;height:1px">
+								<div class="col-md-2" style="text-align:right"><img height="80px" width="80px" src="/pic/${article.picture}" onerror="this.src='/resource/images/default-cat.png'" class="img-rounded"></div>
+								<div class="col-md-10">
+									<a href="javascript:showArticle(${article.id})">${article.title}</a>
+									<br><br>
+									 频道：<a>${article.channel.name}</a> &nbsp;&nbsp;
+									 分类：<a>${article.category.name}</a>
+									<br>
+									
+									${article.user.username} 发布于  <fmt:formatDate value="${article.created}" pattern="yyyy-MM-dd"/> 
+								</div>
 							</div>
-							
-						</div>
+						
 						</c:forEach>
-						<div class="row">
+						<hr width="88%" style="padding-bottom:1px;background-color:#D2691E;border:none;height:1px">
+						
+						<div class="row" style="text-align:center">
 							<ul class="pagination">
 								    <li><a href="/channel?chnId=${chnId}&categoryId=${categoryId}&page=${articles.prePage}">&laquo;</a></li>
 								    <c:forEach begin="${articles.pageNum-2 > 1 ? articles.pageNum-2:1}" end="${articles.pageNum+2 > articles.pages ? articles.pages:articles.pageNum+2}" varStatus="index">    		

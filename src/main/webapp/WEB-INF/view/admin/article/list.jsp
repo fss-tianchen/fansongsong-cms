@@ -150,6 +150,12 @@
 		,"json");
 	}
 	
+	
+	
+	/**
+	* 去审核文章  也就是弹出文章的详情页面
+	*  以模态框的形式显示
+	*/
 	function toApply(articleId){
 		$.post("/admin/getArticle",{id:articleId},function(data){
 			if(data.result==1){

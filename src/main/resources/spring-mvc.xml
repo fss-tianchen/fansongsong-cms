@@ -24,11 +24,11 @@
 	</bean>
 	
 	<!-- 配置权限的拦截器 -->
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
-			配置拦截的资源
+			<!-- 配置拦截的资源 -->
 			<mvc:mapping path="/**"/>
-			配置排除的拦截资源
+			<!-- 配置排除的拦截资源 -->
 			<mvc:exclude-mapping path="/html/**"/>
 			<mvc:exclude-mapping path="/resource/**"/>
 			<mvc:exclude-mapping path="/article/show"/>
@@ -41,10 +41,10 @@
 			<mvc:exclude-mapping path="/user/login"/>
 			<mvc:exclude-mapping path="/user/register"/>
 			<mvc:exclude-mapping path="/user/checkExist"/>
-			拦截器的实现类
-			<bean class="com.mmcro.cms.web.AuthIntercepter"></bean>
+			<!-- 拦截器的实现类 -->
+			<bean class="com.fansongsong.web.UserInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 	
 	<!-- 上传下载配置 -->	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

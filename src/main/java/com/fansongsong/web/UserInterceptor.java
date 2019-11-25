@@ -28,6 +28,9 @@ public class UserInterceptor  implements HandlerInterceptor {
 			return false;
 		}
 		
+		/*
+		 * 普通用户不能进入管理员页面
+		 */
 		if(request.getServletPath().contains("/admin/") 
 				&& loginUser.getRole()==ConstantClass.USER_ROLE_GENERAL ) {
 			request.setAttribute("errorMsg", "只有管理员才能访问这个页面");

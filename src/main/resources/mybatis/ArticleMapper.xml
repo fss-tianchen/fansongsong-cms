@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="channelId" column="channel_id"/>
 		<result property="categoryId" column="category_id"/>
 		<result property="userId" column="user_id"/>
+		<result property="articleType" column="articleType" 
+		   typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+			jdbcType="INTEGER" javaType="com.fansongsong.entity.TypeEnum"
+		/>
 		<association property="user" column="user_id" select="com.fansongsong.mapper.UserMapper.findUserById"></association>
 		<association property="channel" column="channel_id" select="com.fansongsong.mapper.ChannelMapper.findById"></association>
 		<association property="category" column="category_id" select="com.fansongsong.mapper.CategoryMapper.findById"></association>
@@ -64,5 +68,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getDetailById" resultMap="articleMapper">
 		SELECT * FROM cms_article 
 		  WHERE id=#{value} AND deleted=0
+	</select>
+	
+	<!-- 获取图片文章 -->
+	<select id="getImgArticles" resultMap="articleMapper" >
+		SELECT id,title,picture,channel_id,category_id,user_id,hits,commentCnt,created,articleType
+			FROM cms_article 
+			WHERE deleted=0 AND status=1 AND articleType=1
+			ORDER BY created DESC 
+			LIMIT #{value}
 	</select>
 </mapper>

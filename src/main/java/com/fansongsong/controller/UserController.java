@@ -3,6 +3,7 @@ package com.fansongsong.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -26,11 +27,16 @@ import com.fansongsong.common.ConstantClass;
 import com.fansongsong.common.MsgResult;
 import com.fansongsong.entity.Article;
 import com.fansongsong.entity.Channel;
+import com.fansongsong.entity.Collect;
+import com.fansongsong.entity.Image;
+import com.fansongsong.entity.TypeEnum;
 import com.fansongsong.entity.User;
 import com.fansongsong.service.ArticleService;
 import com.fansongsong.service.ChannelService;
+import com.fansongsong.service.CollectService;
 import com.fansongsong.service.UserService;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("user")
@@ -49,6 +55,9 @@ public class UserController {
 	
 	@Autowired
 	private ChannelService channelService;
+	
+	@Autowired
+	private CollectService collectService;
 
 	private SimpleDateFormat dateFormat;
 
@@ -221,7 +230,7 @@ public class UserController {
 			article.setPicture(picUrl);
 		}
 		
-		int result = articleService.update(article);
+		Integer result = articleService.update(article);
 		
 		if(result>0) {
 			// 成功
@@ -377,5 +386,78 @@ public class UserController {
 		Integer result = articleService.favarite(user.getId(), id);
 		CmsAssert.AssertTrue(result>0, "很遗憾，收藏失败");
 		return new MsgResult(1, "恭喜，收藏成功", null);
+	}
+	
+	/**
+	 * 
+	 * @Title: postImg 
+	 * @Description: TODO
+	 * @param request
+	 * @return
+	 * @return: String
+	 */
+	@GetMapping("postImg")
+	public String postImg(HttpServletRequest request) {		
+		// 获取所有的频道
+		List<Channel> channels =  channelService.list();
+		request.setAttribute("channels", channels);	
+		return "article/postimg";		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "postImg",method=RequestMethod.POST)
+	public MsgResult postImg(HttpServletRequest request,Article article,
+			MultipartFile file[],String desc[]) throws IllegalStateException, IOException {
+		
+		User loginUser = (User)request.getSession().getAttribute(ConstantClass.USER_KEY);
+		List<Image> list = new ArrayList<>();
+		// 遍历处理每个上传图片 并存入list
+		for (int i = 0; i < file.length && i < desc.length; i++) {
+			String url = processFile(file[i]);
+			Image image = new Image();
+			image.setDesc(desc[i]);
+			image.setUrl(url);
+			list.add(image);
+		}
+		Gson gson = new Gson();		
+		//设置作者
+		article.setUserId(loginUser.getId());
+		article.setContent(gson.toJson(list));
+		//设置文章类型 是图片
+		article.setArticleType(TypeEnum.IMG);
+		
+		Integer add = articleService.add(article);
+		if(add > 0) {
+			return new MsgResult(1,"发布成功11",null);
+		}else {
+			return new MsgResult(2,"发布失败11",null);
+		}	
+	}
+	
+	/**
+	 * 
+	 * @Title: collect 
+	 * @Description: TODO
+	 * @param request
+	 * @param collect
+	 * @return
+	 * @return: MsgResult
+	 */
+	@ResponseBody
+	@RequestMapping("collect")
+	public MsgResult collect(HttpServletRequest request, Collect collect) {
+		//CmsAssert.AssertTrue(id>0, "id 不合法");
+		User loginUser = (User)request.getSession().getAttribute(ConstantClass.USER_KEY);
+		CmsAssert.AssertTrue(loginUser!=null, "亲，您尚未登录！！");
+		
+		if(collect.getName().length()>20) {
+			collect.setName(collect.getName().substring(0, 20) + "...");
+		}
+		collect.setUserId(loginUser.getId());
+		Integer result = collectService.add(collect);
+		
+		CmsAssert.AssertTrue(result>0, "很遗憾，加入收藏失败！！");
+		return new MsgResult(1,"恭喜，收藏成功",null);
+		
 	}
 }

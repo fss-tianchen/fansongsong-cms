@@ -2,6 +2,7 @@ package com.fansongsong.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Article implements Serializable {
 	
@@ -41,8 +42,17 @@ public class Article implements Serializable {
 	private Date updated          ;
 	// 评论的数量
 	private Integer commentCnt       ;
+	//改文章的所有的图片
+	private List<Image> imgList;
 	//文章类型
-	private Integer articleType      ;
+	private TypeEnum articleType = TypeEnum.HTML ;
+	
+	public List<Image> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<Image> imgList) {
+		this.imgList = imgList;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -145,10 +155,10 @@ public class Article implements Serializable {
 	public void setCommentCnt(Integer commentCnt) {
 		this.commentCnt = commentCnt;
 	}
-	public Integer getArticleType() {
+	public TypeEnum getArticleType() {
 		return articleType;
 	}
-	public void setArticleType(Integer articleType) {
+	public void setArticleType(TypeEnum articleType) {
 		this.articleType = articleType;
 	}
 	@Override

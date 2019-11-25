@@ -20,7 +20,9 @@
 			&nbsp;&nbsp;&nbsp;&nbsp; 发布时间：${article.created} 
 			&nbsp;&nbsp;&nbsp;&nbsp; 频道：${article.channel.name} 
 			&nbsp;&nbsp;&nbsp;&nbsp; 分类：${article.category.name} 
-			&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:favarite(${article.id})">收藏</a>
+			<a href="javascript:favarite(${article.id})">收藏</a>
+			&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="javascript:collect(${article.id})">加入我的收藏夹</a>
 		</h5>
 		<div>
 			${article.content}
@@ -35,18 +37,65 @@
 		</div>
 		<div>
 			<!-- 	显示文章的评论 -->
+			<div class="row">
+				<textarea rows="5" cols="100%"  id="commentContent">
+				
+				</textarea>
+				<input type="button" onclick="comment()" value="发表评论">
+			</div>
+			<div class="container" id="commentList">
+			
+			</div>
+			
 		</div>
 	</div>
 	<script type="text/javascript">
-		function favarite(id){
-			$.post("/user/favarite", {id:id}, function(msg){
-				if(msg.result == 1){
-					alert("收藏成功");
+	function favarite(id){
+		
+		$.post("/user/favarite",{id:id},function(msg){
+			if(msg.result==1){
+				alert('收藏成功')
+			}else{
+				alert(msg.errorMsg);
+			}
+		},"json");
+		
+	}
+	
+	// 将本篇放入我的收藏夹中
+	function collect(id){
+		
+		 var url = window.location.href;
+		 
+		$.post("/user/collect",{name:'${article.title}',url:url},function(msg){
+			if(msg.result==1){
+				alert('加入收藏夹成功')
+			}else{
+				alert(msg.errorMsg);
+			}
+		},"json");
+		
+	}
+	
+	
+	function comment(){
+		$.post("/user/comment",{id:'${article.id}',content:$("#commentContent").val()},
+			function(msg){
+				if(msg.result==1){
+					alert('评论成功')
 				}else{
 					alert(msg.errorMsg);
 				}
-			}, "json")
-		}
+		},
+		"json"
+		)
+	}
+	
+	function showComments(){
+		$("#commentList").load('/article/commentlist?id=${article.id}');
+	}
+	showComments();
+	
 	</script>
 
 </body>
