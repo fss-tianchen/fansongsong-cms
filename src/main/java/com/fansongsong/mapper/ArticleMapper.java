@@ -165,9 +165,9 @@ public interface ArticleMapper {
 	 * @return
 	 * @return: Integer
 	 */
-	@Insert(" REPLACE cms_favorite(user_id,article_id,created) "
+	/*@Insert(" REPLACE cms_favorite(user_id,article_id,created) "
 			+ "VALUES(#{userId},#{articleId},now())")
-	Integer favorite(@Param("userId")Integer userId, @Param("articleId")Integer artId);
+	Integer favorite(@Param("userId")Integer userId, @Param("articleId")Integer artId);*/
 
 	/**
 	 * 

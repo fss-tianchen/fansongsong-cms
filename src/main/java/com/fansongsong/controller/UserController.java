@@ -377,7 +377,7 @@ public class UserController {
 		return str;
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping("favarite")
 	public MsgResult favarite(HttpServletRequest request, Integer id) {
 		CmsAssert.AssertTrue(id>0, "id不合法");
@@ -386,7 +386,7 @@ public class UserController {
 		Integer result = articleService.favarite(user.getId(), id);
 		CmsAssert.AssertTrue(result>0, "很遗憾，收藏失败");
 		return new MsgResult(1, "恭喜，收藏成功", null);
-	}
+	}*/
 	
 	/**
 	 * 
@@ -443,7 +443,7 @@ public class UserController {
 	 * @return
 	 * @return: MsgResult
 	 */
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping("collect")
 	public MsgResult collect(HttpServletRequest request, Collect collect) {
 		//CmsAssert.AssertTrue(id>0, "id 不合法");
@@ -459,5 +459,5 @@ public class UserController {
 		CmsAssert.AssertTrue(result>0, "很遗憾，加入收藏失败！！");
 		return new MsgResult(1,"恭喜，收藏成功",null);
 		
-	}
+	}*/
 }

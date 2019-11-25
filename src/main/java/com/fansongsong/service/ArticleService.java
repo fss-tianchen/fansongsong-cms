@@ -153,7 +153,7 @@ public interface ArticleService {
 	 * @return
 	 * @return: Integer
 	 */
-	Integer favarite(Integer id, Integer id2);
+	/*Integer favarite(Integer id, Integer id2);*/
 
 	/**
 	 * 

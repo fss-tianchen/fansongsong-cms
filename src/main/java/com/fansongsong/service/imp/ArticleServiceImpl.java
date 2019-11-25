@@ -120,11 +120,11 @@ public class ArticleServiceImpl  implements ArticleService{
 		return articleMapper.update(article);
 	}
 
-	@Override
+	/*@Override
 	public Integer favarite(Integer userId, Integer artId) {
 		// TODO Auto-generated method stub
 		return articleMapper.favorite(userId, artId);
-	}
+	}*/
 
 	@Override
 	public PageInfo<Comment> commentlist(Integer articleId, Integer page) {

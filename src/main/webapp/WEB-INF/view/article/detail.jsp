@@ -20,9 +20,9 @@
 			&nbsp;&nbsp;&nbsp;&nbsp; 发布时间：${article.created} 
 			&nbsp;&nbsp;&nbsp;&nbsp; 频道：${article.channel.name} 
 			&nbsp;&nbsp;&nbsp;&nbsp; 分类：${article.category.name} 
-			<a href="javascript:favarite(${article.id})">收藏</a>
+			<%-- <a href="javascript:favarite(${article.id})">收藏</a>
 			&nbsp;&nbsp;&nbsp;&nbsp; 
-			<a href="javascript:collect(${article.id})">加入我的收藏夹</a>
+			<a href="javascript:collect(${article.id})">加入我的收藏夹</a> --%>
 		</h5>
 		<div>
 			${article.content}
@@ -50,7 +50,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	function favarite(id){
+	/* function favarite(id){
 		
 		$.post("/user/favarite",{id:id},function(msg){
 			if(msg.result==1){
@@ -60,10 +60,10 @@
 			}
 		},"json");
 		
-	}
+	} */
 	
 	// 将本篇放入我的收藏夹中
-	function collect(id){
+	/* function collect(id){
 		
 		 var url = window.location.href;
 		 
@@ -75,7 +75,7 @@
 			}
 		},"json");
 		
-	}
+	} */
 	
 	
 	function comment(){
