@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fansongsong.entity.Article;
 import com.fansongsong.entity.Category;
 import com.fansongsong.entity.Channel;
-import com.fansongsong.entity.Link;
 import com.fansongsong.service.ArticleService;
 import com.fansongsong.service.CategoryService;
 import com.fansongsong.service.ChannelService;
-import com.fansongsong.service.LinkService;
 import com.github.pagehelper.PageInfo;
 
 @Controller
@@ -31,9 +29,6 @@ public class IndexController {
 	
 	@Autowired
 	private ArticleService articleService;
-
-	@Autowired
-	private LinkService linkService;
 	
 	@RequestMapping( "channel")
 	public String channel(HttpServletRequest request, 
@@ -76,14 +71,10 @@ public class IndexController {
 		// 获取最新图片文章
 		List<Article> imgArticles = articleService.getImgArticles(10);
 		
-		// 友情链接
-		PageInfo<Link> info=  linkService.list(1);
-		List<Link> linkList =  info.getList();
 		
 		request.setAttribute("hotList", hotList);
 		request.setAttribute("newArticles", newArticles);
 		request.setAttribute("imgArticles", imgArticles);
-		request.setAttribute("linkList", linkList);
 		
 		return "index";
 	}

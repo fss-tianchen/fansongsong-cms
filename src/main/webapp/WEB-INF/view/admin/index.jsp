@@ -40,18 +40,12 @@
 <div class="row">
 	<div class="col-md-2">
 		<div style="margin-left:20px ">
-			<ul class="nav nav-pills nav-stacked">
-			  <li class="active"><a href="javascript:showFuction('/admin/articles')">文章列表</a></li>
-			  <li><a href="javascript:showFuction('/user/hello')">测试</a></li>
-			  <li><a href="#">发布文章</a></li>
-			  <li>投票管理
-			  	<ul class="nav nav-pills nav-stacked">
-			  		<li><a href="#">投票列表</a></li>
-			  		<li><a href="#">新建投票</a></li>
-			  	</ul>
-			  </li>
-			  <li class="divider"></li>
-			  <li><a href="javascript:showFuction('/admin/users')">用户管理</a></li>
+			<ul class="nav nav-pills nav-stacked" id="menu">
+			  <li class="active"><a href="javascript:showFuction($(this),'/admin/articles')">文章管理</a></li>
+			  <li><a href="javascript:showFuction($(this),'/admin/users')">用户管理</a></li>
+			  <li><a href="#">轮播图管理</a></li>
+			  <li><a href="#">公告管理</a></li>
+			  <li><a href="#">投票管理</a></li>
 			</ul>
 		</div>
 	</div>
@@ -65,11 +59,11 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom" 
 role="navigation">
-	<div align="center"> <font color="blue" size="5"> ----八维大数据学院1707D--- </font> </div>
+	<div align="center"> <font color="#996633" size="5"> ----八维大数据学院1707D--- </font> </div>
 </nav>
 
 <script type="text/javascript">
-	function showFuction(url){
+	function showFuction(obj,url){
 		$("#content").load(url)
 	}
 </script>
