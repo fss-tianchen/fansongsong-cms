@@ -43,6 +43,7 @@
 			<ul class="nav nav-pills nav-stacked" id="menu">
 			  <li class="active"><a href="javascript:showFuction($(this),'/admin/articles')">文章管理</a></li>
 			  <li><a href="javascript:showFuction($(this),'/admin/users')">用户管理</a></li>
+			  <li><a href="javascript:showFuction($(this),'/link/list')">友情链接管理</a></li>
 			  <li><a href="#">轮播图管理</a></li>
 			  <li><a href="#">公告管理</a></li>
 			  <li><a href="#">投票管理</a></li>
